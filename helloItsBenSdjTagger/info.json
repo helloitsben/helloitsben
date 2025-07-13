@@ -1,0 +1,9 @@
+{
+    "title": "HelloItsBen - Serato DJ Tags",
+    "id": "helloItsBenSdjTagger",
+    "description": "Add Serato DJ Tags for Ben's Library",
+    "version": "2.0.0",
+    "author": "HelloItsBen",
+    "type": "general",
+    "icon": "icon.svg"
+}
