@@ -1,19 +1,29 @@
-/* Add Serato DJ Tags for Ben's Library  */
-// Current tags in coding system:
-// HHE - Hip Hop
-// JHH - Jazzy Hip Hop
-// UHH - Indie/ Underground Hip Hop
-// RE - Rock
-// PE - Pop
-// RGE - Reggae
-// CE - Hot garbage/ club stuff
-// OSE - Old School
-// YA - Bay Area Slaps
-// KPE - KPOP
-// DE - Dance
-// ND - Nu-Disco
-// LE - Latin Essentials
-// DH - Dance Hall
+/****************************************** 
+* Add Serato DJ Tags for Ben's Library  
+* V 2.0.1
+*******************************************
+*
+*
+* Current tags in coding system:
+* HHE - Hip Hop
+* JHH - Jazzy Hip Hop
+* UHH - Indie/ Underground Hip Hop
+* RE  - Rock
+* PE  - Pop
+* RGE - Reggae
+* CE  - Hot garbage/ club stuff
+* OSE - Old School
+* YA  - Bay Area Slaps
+* KPE - KPOP
+* DE  - Dance
+* ND  - Nu-Disco
+* LE  - Latin Essentials
+* DH  - Dance Hall
+* DE  - Dance
+* AB  - Afro Beats
+* OSE - Old School
+*
+******************************************/
 
 let addTag = async function (tagToAppend) {
         let list = await uitools.getSelectedTracklist().whenLoaded();
@@ -160,6 +170,30 @@ actions.addTagDH = {
     execute: async function () {addTag('(DH) (DanceHall)');}
 };
 
+actions.addTagAB = {
+    title: _('Add AB'),
+    hotkeyAble: true,
+    disabled: uitools.notMediaListSelected,
+    visible: window.uitools.getCanEdit,
+    execute: async function () {addTag('(Ab) (AfroBeats)');}
+};
+
+actions.addTagDE = {
+    title: _('Add DE'),
+    hotkeyAble: true,
+    disabled: uitools.notMediaListSelected,
+    visible: window.uitools.getCanEdit,
+    execute: async function () {addTag('(DE)');}
+};
+
+actions.addTagOSE = {
+    title: _('Add OSE'),
+    hotkeyAble: true,
+    disabled: uitools.notMediaListSelected,
+    visible: window.uitools.getCanEdit,
+    execute: async function () {addTag('(OSE)');}
+};
+
 // define serato menu item:
 let serato = {
     action: {
@@ -235,10 +269,26 @@ let serato = {
 			action: actions.addTagDH,
 			order: 14,
 			grouporder: 10
+		}, 
+		{
+			action: actions.addTagAB,
+			order: 15,
+			grouporder: 10
+		}, 
+		{
+			action: actions.addTagDE,
+			order: 16,
+			grouporder: 10
+		}, 
+		{
+			action: actions.addTagOSE,
+			order: 17,
+			grouporder: 10
 		}]
 	}
 };
 
+// add to the media monkey selected track sub menu
 window._menuItems.editTags.action.submenu.push({
 	action: serato.action,
     order: 1,
